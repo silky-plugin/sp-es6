@@ -21,3 +21,10 @@ silky-plugin: {
   }
 }
 ```
+
+常见配置：
+
+```
+      "plugins": ["transform-es2015-modules-amd"],
+      "sourceMaps":"inline"
+```
