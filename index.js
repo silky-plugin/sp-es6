@@ -7,7 +7,6 @@ const _babel = require('babel-core');
 //根据实际路径获取文件内容
 const getCompileContent = (cli, realFilePath, data, options, cb)=>{
   if(!_fs.existsSync(realFilePath)){
-    data.status = 404
     return cb(null, null)
   }
   let fileContent = _fs.readFileSync(realFilePath, {encoding: 'utf8'})
@@ -37,10 +36,12 @@ exports.registerPlugin = function(cli, options){
     let fakeFilePath = _path.join(cli.cwd(), req.path);
     //替换路径为less
     let realFilePath = fakeFilePath.replace(/(js)$/,'es6')
-
-    getCompileContent(cli, realFilePath, data, defOptions, (error, content)=>{
+    getCompileContent(cli, realFilePath, data, defOptions, (error, compileContent)=>{
       if(error){return cb(error)};
       //交给下一个处理器
+      if(compileContent){
+        content = compileContent
+      }
       cb(null, content)
     })
   })
