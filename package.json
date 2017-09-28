@@ -1,9 +1,9 @@
 {
   "name": "sp-es6",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "main": "index.js",
   "dependencies": {
     "babel-core": "^6.24.1",
-    "babel-preset-es2015": "^6.24.1"
+    "babel-preset-env": "^1.6.0"
   }
 }

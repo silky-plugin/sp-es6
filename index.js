@@ -3,7 +3,6 @@ const _url = require('url');
 const _path = require('path');
 const _fs = require('fs');
 const _babel = require('babel-core');
-
 //根据实际路径获取文件内容
 const getCompileContent = (cli, realFilePath, data, options, cb)=>{
   if(!_fs.existsSync(realFilePath)){
@@ -20,7 +19,14 @@ const getCompileContent = (cli, realFilePath, data, options, cb)=>{
 }
 
 exports.registerPlugin = function(cli, options){
-  let defOptions = { "presets": ["es2015"] }
+  if(options && options.presets && JSON.stringify(options.presets).indexOf("es")!=-1){
+    console.log(`sp-es6已经升级，你的sp-es6配置不兼容，请更新。 浏览器兼容配置请参考 https://github.com/babel/babel-preset-env `.red)
+  }
+  let defOptions = {
+      "presets":[
+        ["env", { "targets": {"browsers": ["last 2 versions"]}}]
+      ]
+    }
   //继承
   if(options){
     Object.keys(options).forEach(function(key){

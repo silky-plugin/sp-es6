@@ -9,7 +9,16 @@ sr install sp-es6
 ### 已包含插件
 
 ```
-babel-preset-es2015
+babel-preset-env
+```
+
+默认配置
+```
+{
+  "presets":[
+    ["env", { "targets": {"browsers": ["last 2 versions"]}}]
+  ]
+}
 ```
 
 ### 可选配置：
